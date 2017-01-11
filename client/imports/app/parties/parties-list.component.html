@@ -1,0 +1,90 @@
+
+<!--<button md-raised-button (click)="export()">Export Data</button>-->
+
+
+<md2-dialog #addParty>
+    <md2-dialog-title>Add a party</md2-dialog-title>
+    <parties-form></parties-form>
+</md2-dialog>
+
+<div class="parties-list-container">
+  <div class="parties-list">
+    <md-card class="filter-card">
+      <h3>Filter Parties</h3>
+      <form class="search-form">
+        <div>
+          <md-input #searchtext placeholder="Search by Location"></md-input>
+          <button md-raised-button color="primary" (click)="search(searchtext.value)">Search</button>
+        </div>
+        <div style="margin-left:20px;margin-top:10px;">
+          <md2-select #sort (change)="changeSortOrder($event.value)" placeholder="Sort by name">
+              <md2-option [value]="1" selected>Ascending</md2-option>
+              <md2-option [value]="-1">Descending</md2-option>
+          </md2-select>
+        </div>
+      </form>
+    </md-card>
+
+    <pagination-controls class="pagination" (pageChange)="onPageChanged($event)"></pagination-controls>
+
+    <div *ngFor="let party of parties | async" >
+      <md-card class="space-around-card">
+        <md-card-title-group>
+          <img *ngIf="party.images.length>0" md-card-sm-image [src]="party | displayMainImage" class="image-border">
+          <div [hidden]="party.images.length>0" class="empty-image"></div>
+          <md-card-title>
+            <a [routerLink]="['/party', party._id]">{{party.name}}</a>
+          </md-card-title>
+          <md-card-subtitle>
+            {{party.description}}
+          </md-card-subtitle>
+        </md-card-title-group>
+        <div class="location-name">
+          {{party.location.name}}
+        </div>
+        <div layout="row">
+          <div>
+            <div class="rsvps-sum">
+              <div class="rsvps-amount">{{party | rsvp:'yes'}}</div>
+              <div class="rsvps-title">Yes</div>
+            </div>
+            <div class="rsvps-sum">
+              <div class="rsvps-amount">{{party | rsvp:'maybe'}}</div>
+              <div class="rsvps-title">Maybe</div>
+            </div>
+            <div class="rsvps-sum">
+              <div class="rsvps-amount">{{party | rsvp:'no'}}</div>
+              <div class="rsvps-title">No</div>
+            </div>
+          </div>
+        </div>
+        <md-card-actions layout="row" class="delete-party">
+          <!--<div [hidden]="!isOwner(party)"><button md-button (click)="confirmDelete.show(party)" style="min-width:25px;"><i class="material-icons delete">delete</i></button></div>-->
+          <div [hidden]="!isOwner(party)"><button md-button (click)="removeParty(party)" style="min-width:25px;"><i class="material-icons delete">delete</i></button></div>
+          <div [hidden]="!isOwner(party)"><button md-button [routerLink]="['/party', party._id]" style="min-width:25px;"><i class="material-icons edit">edit</i></button></div>
+        </md-card-actions>
+      </md-card>
+    </div>
+
+    <pagination-controls class="pagination" (pageChange)="onPageChanged($event)"></pagination-controls>
+  </div>
+  <div class="parties-map">
+    <sebm-google-map
+      [latitude]="0"
+      [longitude]="0"
+      [zoom]="1"
+      class="google-map">
+      <div *ngFor="let party of parties | async">
+      <sebm-google-map-marker
+      *ngIf="party.location.lat"
+      [latitude]="party.location.lat"
+      [longitude]="party.location.lng">
+      </sebm-google-map-marker>
+      </div>
+    </sebm-google-map>
+  </div>
+</div>
+
+<div class="add-party-button">
+  <button md-mini-fab (click)="addParty.show()" color="primary"> <md-icon class="md-24" >add</md-icon></button>
+</div>

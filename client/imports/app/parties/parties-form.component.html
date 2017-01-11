@@ -1,0 +1,23 @@
+<div *ngIf="!user">You need to login to create new parties!</div>
+  <div *ngIf="user">
+      <div class="add-party-container">
+        <form [formGroup]="addForm" (ngSubmit)="addParty(); upload.reset()">
+            <md-input formControlName="name" placeholder="Party name" dividerColor="{{ !addForm.controls['name'].valid ? 'warn' : 'primary' }}" class="space-between-row">
+              <md-hint *ngIf="addForm.controls['name'].hasError('required') && addForm.controls['name'].touched"><div class="hint-error">Name is required</div></md-hint>
+            </md-input>
+            <div style="height:5px;"></div>
+            <md-input formControlName="description" placeholder="Description" class="space-between-row">
+            </md-input>
+            <div style="height:5px;"></div>
+            <md-input formControlName="location" placeholder="Location name" dividerColor="{{ !addForm.controls['name'].valid ? 'warn' : 'primary' }}" class="space-between-row">
+              <md-hint *ngIf="addForm.controls['location'].hasError('required') && addForm.controls['location'].touched"><div class="hint-error">Location is required</div></md-hint>
+            </md-input>
+            <div style="height:5px;"></div>
+            <md-checkbox formControlName="public">Public</md-checkbox>
+
+            <parties-upload #upload (onFile)="onImage($event)"></parties-upload>
+
+            <button md-raised-button type="submit" [disabled]="!addForm.valid" class="md-primary md-hue-8">Add</button>
+        </form>
+      </div>
+  </div>

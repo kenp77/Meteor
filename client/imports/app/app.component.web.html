@@ -1,0 +1,20 @@
+<div [class.dark-theme]="isDarkTheme">
+  <md-toolbar color="primary">
+    <div class="bbd-logo">
+      <img md-button src="/bbd-w-fr.png" routerLink="/">
+    </div>
+    <span class="fill-remaining-space"></span>
+    <div [hidden]="user">
+      <a md-button [routerLink]="['/login']" style="color:#fff">Login</a>
+      <a md-button [routerLink]="['/signup']" style="color:#fff">Sign up</a>
+    </div>
+    <div [hidden]="!user">
+      <span>{{ user | displayName }}</span>
+      <button md-button (click)="logout()">Logout</button>
+    </div>
+    <div>
+      <md-slide-toggle checked="true" [(ngModel)]="globalTheme"></md-slide-toggle>
+    </div>
+  </md-toolbar>
+  <router-outlet></router-outlet>
+</div>

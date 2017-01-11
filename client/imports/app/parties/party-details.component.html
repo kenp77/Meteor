@@ -1,0 +1,55 @@
+<div class="detail-container">
+    <md-card flex="33">
+      <md-card-title>
+          <h4>Your party details</h4>
+      </md-card-title>
+      <form #updateForm layout="column" *ngIf="party"  (submit)="saveParty()" class="updateForm">
+        <label>Party Name </label>
+        <md-input [disabled]="!isOwner" [(ngModel)]="party.name" name="name"></md-input>
+        <label>Party Description</label>
+        <md-input [disabled]="!isOwner" [(ngModel)]="party.description" name="description"></md-input>
+        <label>Location name</label>
+        <md-input [disabled]="!isOwner" [(ngModel)]="party.location.name" name="location"></md-input>
+        <md-checkbox [disabled]="!isOwner" [(ngModel)]="party.public" name="public">
+          Is public
+        </md-checkbox>
+        <div layout="row" layout-align="left">
+          <button [disabled]="!isOwner" type="submit" md-raised-button class="md-raised md-primary">Save</button>
+          <a [routerLink]="['/']" md-raised-button class="md-raised">Back</a>
+        </div>
+    </md-card>
+    <md-card flex="33" class="reply-container">
+      <div align="center">
+        <md-card-title>
+            <h4>Reply to the invitations</h4>
+        </md-card-title>
+        <button md-raised-button color="primary" value="I'm going!" (click)="reply('yes')">Yes</button>
+        <button md-raised-button color="primary" value="Maybe" (click)="reply('maybe')">Maybe</button>
+        <button md-raised-button color="primary" value="No" (click)="reply('no')">No</button>
+        <div class="map-container">
+          <sebm-google-map
+            style="height: 300px;width:100%"
+            [latitude]="lat || centerLat"
+            [longitude]="lng || centerLng"
+            [zoom]="8"
+            (mapClick)="mapClicked($event)">
+            <sebm-google-map-marker
+              *ngIf="lat && lng"
+              [latitude]="lat"
+              [longitude]="lng">
+            </sebm-google-map-marker>
+          </sebm-google-map>
+        </div>
+      </div>
+    </md-card>
+    <md-card  flex="33">
+      <md-card-title>
+          <h4>Users to invite:</h4>
+      </md-card-title>
+      <div *ngFor="let user of users | async">
+        <div>{{ user | displayName }}</div>
+        <button (click)="invite(user)" md-raised-button class="md-raised">Invite</button>
+      </div>
+    </md-card>
+    </form>
+</div>

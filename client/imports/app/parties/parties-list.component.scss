@@ -1,0 +1,217 @@
+.form-container {
+  padding: 2;
+  margin: 2;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-flow: row wrap;
+
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+
+.divider {
+  width : 100%;
+  border : 1px gray solid;
+  clear : both;
+}
+
+.new-party-form-container {
+  margin: 20px;
+  border: 1px gainsboro solid;
+}
+
+.parties-list-header{
+    margin-bottom:10px;
+    background-color: #f7f7f7;
+}
+
+.delete-party{
+  flex-direction: row;
+  justify-content: center;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.bottom-right{
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    width: auto;
+    z-index: 9999;
+    color: #fff;
+    margin : 0 22px 18px 0;
+}
+
+.parties-list-search{
+    flex: 1;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    box-sizing: border-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin:10px 0 10px 0px;
+    background-color:#D8E4EB;
+    box-shadow: 0 2px 3px rgba(55, 57, 57, 0.19),
+}
+
+.parties-list {
+    flex: 1; // all items will have the same length
+    -webkit-flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    box-sizing: border-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .space-around-card {
+      margin-bottom:5px;
+    }
+
+  .map-container-main {
+    box-sizing: border-box;
+    -webkit-flex-flow: row wrap;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+  }
+
+  .rsvps-sum {
+    display: inline-block;
+    width: 50px;
+    text-align: center;
+    .rsvps-amount {
+      font-size: 24px;
+    }
+    .rsvps-title {
+      font-size: 13px;
+      color: #aaa;
+    }
+  }
+
+  .ma-party {
+    .party-image {
+      background-size: cover;
+      width: 100%;
+      height: 200px;
+    }
+
+    .ma-name {
+      a {
+        text-decoration: none;
+        color: #333;
+      }
+    }
+    .ma-description {
+
+    }
+  }
+
+
+.search-form {
+  margin-bottom: 1em;
+}
+
+img.party-main-image {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.parties-list-container {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0 auto;
+  width: 100%;
+  display: table;
+
+  .parties-list {
+    display: table-cell;
+    width: 70%;
+    vertical-align: top;
+
+    .pagination {
+      display: inline;
+      text-align: center;
+    }
+
+    .party-card {
+      margin: 20px;
+      position: relative;
+
+      img.party-main-image {
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      .party-name > a {
+        color: black;
+        text-decoration: none;
+      }
+
+      .remove-party {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+
+      .rsvp-container {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+
+        .rsvps-sum {
+          display: inline-block;
+          width: 50px;
+          text-align: center;
+
+          .rsvps-amount {
+            font-size: 24px;
+          }
+
+          .rsvps-title {
+            font-size: 13px;
+            color: #aaa;
+          }
+        }
+      }
+    }
+  }
+
+  .parties-map {
+    display: table-cell;
+    width: 30%;
+    vertical-align: top;
+
+    .google-map {
+      width: 100%;
+      min-height: 600px;
+    }
+  }
+}
+
+.add-party-button {
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    width: auto;
+    z-index: 9999;
+    margin : 0 22px 18px 0;
+}
+
+.location-name{
+  margin:10px 0 10px 0;
+  font-style:italic
+}
