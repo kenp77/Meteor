@@ -47,7 +47,8 @@ md-card.filter-card {
 }
 
 .md2-dialog-header{
-  background: #586970 !important;
+  background: #f0f0f0 !important;
+  color : #777 !important;
 }
 
 .add-party-form{
@@ -94,10 +95,6 @@ md-card.reply-container{
   }
   md-dialog-container {
     background: #10639A;
-  }
-
-  .md2-dialog-header{
-    background: #ffffff !important;
   }
 
   pagination-controls .ng2-pagination li.current {
